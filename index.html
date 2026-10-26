@@ -1,0 +1,44 @@
+<!-- Interactive large-flock laboratory with worker simulation and batched GPU drawing. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BoidsBulkV3 — Flock laboratory</title>
+    <meta name="description" content="Explore large flocks of 20,000 or more boids with live flocking parameters.">
+    <link rel="stylesheet" href="/Lib/Bootstrap4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./BoidsBulkV3.css">
+    <link rel="stylesheet" href="/Theme.css">
+    <script src="/NavBar.js" defer></script>
+    <script src="./BoidsBulkV3.js" defer></script>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <main>
+        <header class="intro">
+            <div><p class="eyebrow">COLLECTIVE MOTION / EXPERIMENT 03</p><h1>BoidsBulk<span>V3</span></h1><p>Small rules. Extraordinary flocks.</p></div>
+            <div class="telemetry"><div><strong id="population">20,000</strong><span>BOIDS</span></div><div><strong id="fps">—</strong><span>DRAW FPS</span></div><div><strong id="step">—</strong><span>SIMULATION MS</span></div></div>
+        </header>
+        <div class="laboratory">
+            <section class="viewport" aria-label="Live flock simulation">
+                <canvas id="flock" aria-label="Animated boids flock"></canvas>
+                <div class="scene-label"><span class="live-dot"></span><span id="status" role="status">Starting flock…</span></div>
+                <div class="scene-footer">MOVE POINTER TO INFLUENCE THE FLOCK <span>WORLD / 1920 × 1080</span></div>
+            </section>
+            <aside>
+                <div class="panel-title"><h2>Parameters</h2><span>LIVE</span></div>
+                <label class="field" for="count">Population <output id="count-value">20,000</output></label>
+                <input id="count" type="range" min="1000" max="100000" step="1000" value="20000">
+                <p class="hint">1,000–100,000 boids. Changing population restarts the flock.</p>
+                <div id="parameters"></div>
+                <label class="field" for="pointer">Pointer interaction</label>
+                <select id="pointer"><option value="repel">Repel</option><option value="attract">Attract</option><option value="none">Off</option></select>
+                <label class="field" for="preset">Flock preset</label>
+                <select id="preset"><option value="balanced">Balanced</option><option value="flow">Flow</option><option value="swarm">Swarm</option><option value="scatter">Scatter</option></select>
+                <div class="actions"><button id="pause" type="button">Pause</button><button id="restart" type="button">Restart</button><button id="reset" type="button">Reset all</button></div>
+                <p class="hint">Spatial grid · background worker · one GPU draw call. Neighbor checks are capped per boid to keep dense flocks responsive. Performance depends on your device.</p>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
